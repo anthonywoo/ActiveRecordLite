@@ -18,7 +18,13 @@ class Cat < SQLObject
   set_attrs(:id, :name, :owner_id)
 
   belongs_to :human, :class_name => "Human", :primary_key => :id, :foreign_key => :owner_id
-  #has_one_through :house, :human, :house
+  has_one_through :house, :human, :house
+
+  # SELECT *
+  # FROM house
+  # JOIN human
+  # ON human.house_id = house.id
+  # WHERE cat.owner_id = human.id
 end
 
 # class Human < SQLObject
